@@ -2,11 +2,12 @@
   "name": "@slide-computer/identity",
   "version": "1.0.0",
   "description": "Connect to Slide Wallet on the Internet Computer",
-  "main": "./lib/cjs/index",
+  "type": "module",
+  "main": "./lib/esm/index.js",
   "module": "./lib/esm/index",
   "unpkg": "./lib/esm/index",
   "scripts": {
-    "build": "tsc -b && tsc -p tsconfig-cjs.json"
+    "build": "tsc -b"
   },
   "author": "Slide",
   "license": "MIT",

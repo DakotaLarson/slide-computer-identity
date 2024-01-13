@@ -1,8 +1,8 @@
 import { unwrapDER } from "@dfinity/identity";
-import { ValidateCanisterSignatureParams } from "./types";
+import { ValidateCanisterSignatureParams } from "./types.js";
 import { Certificate } from "@dfinity/agent";
 import { Principal } from "@dfinity/principal";
-import { decode } from "../utils/cbor";
+import { decode } from "../utils/cbor.js";
 
 export const CANISTER_SIGNATURE_OID = Uint8Array.from([
   ...[0x30, 0x0c], // SEQUENCE

@@ -26,7 +26,7 @@ import {
   PermissionJsonRequest,
   PermissionJsonResponse,
   Transport,
-} from "./transport";
+} from "./transport/index.js";
 import { Buffer } from "buffer";
 import { Principal } from "@dfinity/principal";
 import {
@@ -35,7 +35,7 @@ import {
   DelegationIdentity,
   isDelegationValid,
 } from "@dfinity/identity";
-import { isIdentitySignatureValid } from "./signature";
+import { isIdentitySignatureValid } from "./signature/index.js";
 
 export const ICP_NETWORK_CHAIN_ID = "icp:737ba355e855bd4b61279056603e0550";
 export const ICP_NETWORK_NAME = "Internet Computer";
@@ -198,7 +198,7 @@ export class WalletAgent implements Agent {
                     signature: identity.signature,
                     challenge: walletChallenge,
                     rootKey: this.rootKey,
-                    delegationChain: identity.delegationChain,
+                    delegationChain: identity.delegationChain?.toJSON(),
                   }))
                 ) {
                   reject("Identity signature is invalid");
@@ -517,5 +517,5 @@ export class WalletAgent implements Agent {
   }
 }
 
-export * from "./transport";
-export * from "./signature";
+export * from "./transport/index.js";
+export * from "./signature/index.js";

@@ -1,15 +1,15 @@
 import {
   ValidateCanisterSignatureParams,
   ValidateChallengeSignatureParams,
-} from "./types";
-import { DelegationChain } from "@dfinity/identity";
-import { isSignatureValid } from "./index";
+} from "./types.js";
+import { DelegationChain, JsonnableDelegationChain } from '@dfinity/identity';
+import { isSignatureValid } from "./index.js";
 import { concat, requestIdOf } from "@dfinity/agent";
 
 export interface ValidateIdentitySignatureParams
   extends ValidateChallengeSignatureParams,
     ValidateCanisterSignatureParams {
-  delegationChain?: DelegationChain;
+  delegationChain?: JsonnableDelegationChain;
 }
 
 export const DELEGATION_DOMAIN_SEP = new TextEncoder().encode(
@@ -21,12 +21,14 @@ export const isIdentitySignatureValid = async ({
   signature,
   challenge,
   rootKey,
-  delegationChain,
+  delegationChain: rawDelegationChain,
 }: ValidateIdentitySignatureParams): Promise<boolean> => {
   // Only need to check if signature is valid
-  if (!delegationChain) {
+  if (!rawDelegationChain) {
     return isSignatureValid({ publicKey, signature, challenge, rootKey });
   }
+
+  const delegationChain = DelegationChain.fromJSON(rawDelegationChain);
 
   // A delegation chain without delegations cannot be valid
   if (delegationChain.delegations.length === 0) {

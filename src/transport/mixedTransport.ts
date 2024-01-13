@@ -1,4 +1,4 @@
-import { JsonRPC, Transport } from "./types";
+import { JsonRPC, Transport } from "./types.js";
 
 export interface MixedTransportOptions {
   incoming: Pick<Transport, "registerListener">;

@@ -1,4 +1,4 @@
-import { JsonRPC, Transport } from "./types";
+import { JsonRPC, Transport } from "./types.js";
 import { Buffer } from "buffer";
 
 export interface LinkTransportOptions {

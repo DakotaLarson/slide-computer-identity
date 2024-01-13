@@ -1,12 +1,12 @@
 import {
   ValidateCanisterSignatureParams,
   ValidateChallengeSignatureParams,
-} from "./types";
-import { ECDSA_P256_OID, isECDSASignatureValid } from "./p256";
-import { ED25519_OID, isEd25519SignatureValid } from "./ed25519";
-import { isSecp256k1SignatureValid, SECP256K1_OID } from "./secp256k1";
+} from "./types.js";
+import { ECDSA_P256_OID, isECDSASignatureValid } from "./p256.js";
+import { ED25519_OID, isEd25519SignatureValid } from "./ed25519.js";
+import { isSecp256k1SignatureValid, SECP256K1_OID } from "./secp256k1.js";
 import { compare } from "@dfinity/agent";
-import { CANISTER_SIGNATURE_OID, isCanisterSignatureValid } from "./canister";
+import { CANISTER_SIGNATURE_OID, isCanisterSignatureValid } from "./canister.js";
 
 export const isSignatureValid = (
   params: ValidateChallengeSignatureParams & ValidateCanisterSignatureParams,
@@ -39,9 +39,9 @@ export const isSignatureValid = (
   }
 };
 
-export * from "./types";
-export * from "./identity";
-export * from "./p256";
-export * from "./ed25519";
-export * from "./secp256k1";
-export * from "./canister";
+export * from "./types.js";
+export * from "./identity.js";
+export * from "./p256.js";
+export * from "./ed25519.js";
+export * from "./secp256k1.js";
+export * from "./canister.js";
